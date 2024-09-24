@@ -1,0 +1,32 @@
+{
+  "name": "docker_node",
+  "version": "1.0.0",
+  "description": "Tutorial Deploy Nodejs With Docker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "start-dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eng-Mohamed-Salah/docker_nodejs.git"
+  },
+  "keywords": [
+    "docker",
+    "nodejs",
+    "docker-nodejs"
+  ],
+  "author": "Eng-Mohamed-Salah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Eng-Mohamed-Salah/docker_nodejs/issues"
+  },
+  "homepage": "https://github.com/Eng-Mohamed-Salah/docker_nodejs#readme",
+  "dependencies": {
+    "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
