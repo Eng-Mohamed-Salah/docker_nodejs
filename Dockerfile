@@ -51,3 +51,5 @@ CMD [ "npm","run", "start-dev" ];
 # [13] Professional write Command Line Sync Container To Local => docker run --name <name_container> -v $(pwd):/app -d -p 4000:3000 <name_images> ( $(pwd) => path project In Linux | %cd% => path project In Windows )
 
 # [14] Sync Container To Local By Anonymous Volume => docker run --name <name_container> -v $(pwd):/app -v /app/node_modules -v /app/package-lock.json  -d -p 4000:3000 <name_images> (-v /app/node_modules => exclude node_modules For Sync To Local | Can add Many Filer exclude)
+
+# Docker-Compose will Manage services in the container  

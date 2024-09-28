@@ -1,0 +1,14 @@
+# Select Version Docker Compose For Work With Docker version
+version: "3"
+# Knowlogde Services  => Shortcut for Docker Command -> docker run --name=express-node-app-container -v $(pwd):/app:ro -d -p 4000:3000 <name_images>
+services:
+  node-app:
+    container_name: express-node-app-container # --name=express-node-app-container
+    build: . # Bulid Dockerfile 
+    volumes:
+      - .:/app:ro # -v $(pwd):/app:ro
+    ports:
+      - "4000:3000" # -p 4000:3000
+
+
+# Run Docker Compose By Commandline => docker-compose up -d | For Stop docker-compose down
