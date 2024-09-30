@@ -7,18 +7,34 @@ WORKDIR /app
 # Copy File Manage Node js 
 COPY package.json /app
 
+# Create Argument For Check Environment 
+ARG NODE_ENV
+
+#Make Condition For Installation Project 
+RUN if [ "$NODE_ENV" = "production" ]; \
+        then npm install --only=production; \
+        else npm install; \
+        fi
+
+
 # Run Command Line Install Package Project
 RUN npm install 
 
 # Copy All File Project In Container ( . => all File | index.js => is Select Once file )
 COPY . /app
 
+
 # Know Port Application For Devloper 
 EXPOSE 4000
 
 # Run Application In Container (CMD => CommandLine )
 # npm run start-dev
-CMD [ "npm","run", "start-dev" ]; 
+# CMD [ "npm","run", "start-dev" ]; 
+
+# Install Bash
+RUN apt-get update && apt-get install -y bash
+
+CMD ["npm","run", "start-dev"]
 
 
 # Doc Command line 
@@ -52,4 +68,6 @@ CMD [ "npm","run", "start-dev" ];
 
 # [14] Sync Container To Local By Anonymous Volume => docker run --name <name_container> -v $(pwd):/app -v /app/node_modules -v /app/package-lock.json  -d -p 4000:3000 <name_images> (-v /app/node_modules => exclude node_modules For Sync To Local | Can add Many Filer exclude)
 
-# Docker-Compose will Manage services in the container  
+# Docker-Compose will Manage services in the container -> Create File docker-compose.yml 
+
+# [15] Set Enviroment variables by commandline -> docker run --name <name_container> -v /var/www/html/projects/Tutorail/Docker/nodejs:/app:ro --env-file ./.env | --env PORT=4000 --env APP_ENV=DEV    -d -p 4000:3000 <name_images>

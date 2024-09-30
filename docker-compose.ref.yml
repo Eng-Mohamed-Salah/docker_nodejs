@@ -4,15 +4,16 @@ version: "3"
 services:
   node-app:
     container_name: express-node-app-container # --name=express-node-app-container
-    #build: . # Bulid Dockerfile 
-    # volumes:
-      # - .:/app:ro # -v $(pwd):/app:ro
-    # ports:
-    #   - "4000:3000" # -p 4000:3000
-    # environment:
-    #   - NODE_ENV=Development
-    # env_file: 
-    #   - ./.env
+    build: . # Bulid Dockerfile 
+    volumes:
+      - .:/app:ro # -v $(pwd):/app:ro
+    ports:
+      - "4000:3000" # -p 4000:3000
+    #environment:
+     # - PORT=4000
+     # - TEST=value
+    env_file: 
+      - ./.env
 
 # Run Docker Compose By Commandline => docker-compose up -d | For Stop docker-compose down
 # open Conatianer -> docker exec -it express-node-app-container => for test environment innet contianer write command printenv

@@ -1,16 +1,21 @@
 # Select Version Docker Compose For Work With Docker version
-version: "3"
+version: '3.8'
 # Knowlogde Services  => Shortcut for Docker Command -> docker run --name=express-node-app-container -v $(pwd):/app:ro -d -p 4000:3000 <name_images>
 services:
   node-app:
-    container_name: express-node-app-container # --name=express-node-app-container
-    #build: . # Bulid Dockerfile 
-    # volumes:
-      # - .:/app:ro # -v $(pwd):/app:ro
-    # ports:
-    #   - "4000:3000" # -p 4000:3000
-    # environment:
-    #   - NODE_ENV=Development
+    build: 
+      context: . # Bulid Dockerfile
+      args:
+        - NODE_ENV=production # pass Environment To Dockerfile
+    ports:
+       - "4000:3000" # -p 4000:3000
+    environment:
+      - NODE_ENV=production
+
+    command: npm start
+    # restart: unless-stopped
+    # command: tail -f /dev/null
+
     # env_file: 
     #   - ./.env
 
