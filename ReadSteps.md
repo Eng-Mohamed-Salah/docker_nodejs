@@ -17,41 +17,69 @@
 
 
     - Other Options For Build Environment 
-          ```
+
+          
             #FROM node:18 as base // Run Build Any Environment
             FROM node:18 as development
+            
             # Set working directory
             WORKDIR /app
+            
             # Copy File Manage Node js 
             COPY package.json /app
+            
             # Run Command Line Install Package Project
             RUN npm install 
+            
             # Copy All File Project In Container ( . => all File | index.js => is Select Once file )
             COPY . /app
+            
             # Know Port Application For Devloper 
             EXPOSE 4000
+            
             # Install Bash
             RUN apt-get update && apt-get install -y bash
             CMD [ "npm","start" ]; 
             FROM node:18 as production
+            
             # Set working directory
             WORKDIR /app
+
             # Copy File Manage Node js 
             COPY package.json /app
+
             # Run Command Line Install Package Project
             RUN npm install --only=production
+            
             # Copy All File Project In Container ( . => all File | index.js => is Select Once file )
             COPY . /app
+            
             # Know Port Application For Devloper 
             EXPOSE 4000
+            
             # Install Bash
             RUN apt-get update && apt-get install -y bash
             CMD [ "npm","start" ]; 
-          ```
+          `
     - Than Pass in File docker-compose.prod Or docker-compose.dev
      ```
          build: 
       context: . # Bulid Dockerfile
       target: production #  production | development
     ```
-        
+    
+- [5] Add Service New Service For Docker-compose Image 
+    - Add service To Docker :
+    ```
+    services:
+       node-app:
+
+       # Add Service Database Mongo Database
+       mongo:
+         image: mongo 
+         restart: always
+         environment:
+          MONGO_INITDB_ROOT_USERNAME: root
+          MONGO_INITDB_ROOT_PASSWORD: test13591
+    ``` 
+    - Can Know everything about This Container Configuration : `docker inspect <name_container>` | `docker network ls`

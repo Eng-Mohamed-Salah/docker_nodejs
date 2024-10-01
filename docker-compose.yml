@@ -3,7 +3,20 @@ version: "3"
 # Knowlogde Services  => Shortcut for Docker Command -> docker run --name=express-node-app-container -v $(pwd):/app:ro -d -p 4000:3000 <name_images>
 services:
   node-app:
-    container_name: express-node-app-container # --name=express-node-app-container
+    #restart: unless-stopped
+    # --name=express-node-app-container
+    container_name: express-node-app-container 
+    ports:
+      - "4000:4000"
+  # Add Service Database Mongo Database
+  mongo:
+    image: mongo 
+    #restart: always
+    environment:
+       MONGO_INITDB_ROOT_USERNAME: root
+       MONGO_INITDB_ROOT_PASSWORD: example
+
+
     #build: . # Bulid Dockerfile 
     # volumes:
       # - .:/app:ro # -v $(pwd):/app:ro

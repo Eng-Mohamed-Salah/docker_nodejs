@@ -34,7 +34,7 @@ EXPOSE 4000
 # Install Bash
 RUN apt-get update && apt-get install -y bash
 
-CMD ["npm","run", "start-dev"]
+CMD ["npm","start"]
 
 
 # Doc Command line 
